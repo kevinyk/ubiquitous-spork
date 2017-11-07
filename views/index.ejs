@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pizza Maker</title>
+</head>
+<body>
+<% for (var key in errors){ %>
+	<p><%= errors[key].message %></p>
+<% } %>
+<H2>Chef Maker</H2>
+<form action="/chefs" method="POST">
+	<p>Name: <input type="text" name="name"></p>
+	<input type="submit" name="">
+</form>
+
+<H2>Pizza Maker</H2>
+<form action="/pizzas", method="POST">
+	<p>Name: <input type="text" name="name"></p>
+	<p>Cheese: <input type="text" name="cheese"></p>
+	<p><select name="_user">
+		<% for (var i = 0; i< allChefs.length; i++){ %>
+			<option value="<%= allChefs[i]._id %>"><%= allChefs[i].name %></option>
+		<% } %>
+	</select></p>
+	<input type="submit" name="">
+</form>
+<h3>Here are all your pizza Chefs</h3>
+<table>
+	<tr>
+		<td>Name</td>
+	</tr>
+	<% for (var chef of allChefs){ %>
+		<tr>
+			<td><%= chef.name %>
+				<ul>
+					<% for (var pizza of chef.pizzas){ %>
+						<li><%= pizza.name %> with <%= pizza.cheese %> cheese</li>
+					<% } %>
+				</ul>
+			</td>
+		</tr>
+	<% } %>
+</table>
+</body>
+</html>
